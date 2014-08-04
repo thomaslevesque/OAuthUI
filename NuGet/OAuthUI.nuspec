@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>OAuthUI</id>
+    <version>1.0</version>
+    <authors>Thomas Levesque</authors>
+    <owners>Thomas Levesque</owners>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <projectUrl>https://github.com/thomaslevesque/OAuthUI</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A library that provides a UI for OAuth authentication on desktop and mobile platforms.</description>
+    <tags>oauth ui</tags>
+  </metadata>
+  <files>
+    <file src="..\OAuthUI\bin\Release\OAuthUI.dll" target="lib/portable-net4+sl5+netcore45+wpa81+wp8/OAuthUI.dll" />
+    <file src="..\OAuthUI.NET40\bin\Release\OAuthUI.dll" target="lib/net40/OAuthUI.dll" />
+    <file src="..\OAuthUI.WinRT\bin\Release\OAuthUI.dll" target="lib/win8/OAuthUI.dll" />
+  </files>
+</package>
