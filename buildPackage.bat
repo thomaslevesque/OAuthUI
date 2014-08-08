@@ -1,5 +1,5 @@
 @echo off
 set OUTDIR=NuGet\bin
-mkdir %OUTDIR%
+mkdir %OUTDIR% 2> nul
 nuget pack NuGet\OAuthUI.nuspec -OutputDirectory %OUTDIR%
 

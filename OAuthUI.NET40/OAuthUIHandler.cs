@@ -25,6 +25,37 @@ namespace OAuthUI
             return tcs.Task;
         }
 
+        public Task LogoutAsync(Uri logoutUri)
+        {
+            var frame = new Frame();
+            var tcs = new TaskCompletionSource<bool>();
+            LoadCompletedEventHandler loadCompletedHandler = null;
+            NavigationFailedEventHandler failedHandler = null;
+            Action unsubscribe = () =>
+            {
+                // ReSharper disable AccessToModifiedClosure
+                frame.LoadCompleted -= loadCompletedHandler;
+                frame.NavigationFailed -= failedHandler;
+                // ReSharper restore AccessToModifiedClosure
+            };
+            loadCompletedHandler =
+                (sender, e) =>
+                {
+                    unsubscribe();
+                    tcs.SetResult(true);
+                };
+            failedHandler =
+                (sender, e) =>
+                {
+                    unsubscribe();
+                    tcs.SetException(e.Exception);
+                };
+            frame.LoadCompleted += loadCompletedHandler;
+            frame.NavigationFailed += failedHandler;
+            frame.Navigate(logoutUri);
+            return tcs.Task;
+        }
+
         class OAuthWindow : Window
         {
             private readonly Uri _startUri;
@@ -54,7 +85,7 @@ namespace OAuthUI
                     Height = _options.Height.Value;
             }
 
-            public OAuthResult Result { get; set; }
+            public OAuthResult Result { get; private set; }
 
             protected override void OnSourceInitialized(EventArgs e)
             {

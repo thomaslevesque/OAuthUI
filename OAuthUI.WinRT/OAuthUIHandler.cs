@@ -32,5 +32,10 @@ namespace OAuthUI
 
             return new OAuthResult(result.ResponseData, status);
         }
+
+        public Task LogoutAsync(Uri logoutUri)
+        {
+            return Task.FromResult(0);
+        }
     }
 }
