@@ -83,19 +83,15 @@ namespace OAuthUI
                     Width = _options.Width.Value;
                 if (_options.Height != null)
                     Height = _options.Height.Value;
-            }
 
-            public OAuthResult Result { get; private set; }
-
-            protected override void OnSourceInitialized(EventArgs e)
-            {
-                base.OnSourceInitialized(e);
                 if (_options.Owner != null)
                 {
                     var helper = new WindowInteropHelper(this);
                     helper.Owner = _options.Owner.Value;
                 }
             }
+
+            public OAuthResult Result { get; private set; }
 
             private void OnLoaded(object sender, RoutedEventArgs e)
             {
